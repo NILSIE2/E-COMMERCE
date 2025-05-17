@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hell's Gate | Edit Profile</title>
+  <link rel="icon" type="image/x-icon" href="assets/fav.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #121212;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      width: 100%;
+      background-color: #1e1e2f;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar .brand {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      color: #b22222;
+      letter-spacing: 1px;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar-links a {
+      color: #ccc;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    .navbar-links a:hover {
+      background-color: #2f2f45;
+      color: #fff;
+    }
+
+    .main {
+      flex: 1;
+      padding: 30px;
+      background: linear-gradient(to right, #121212, #1e1e2f);
+      overflow-y: auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .topbar .greeting {
+      font-size: 18px;
+    }
+
+    .edit-form {
+      background-color: #292940;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .edit-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .edit-form button {
+      background-color: #b22222;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .edit-form button:hover {
+      background-color: #8b0000;
+    }
+
+    .receipt {
+      margin-top: 30px;
+      background-color: #1e1e2f;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .receipt h3 {
+      margin-bottom: 10px;
+    }
+
+    .receipt button {
+      margin-top: 15px;
+      background: #008000;
+      padding: 8px 15px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .receipt, .receipt * {
+        visibility: visible;
+      }
+      .receipt {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        color: #000;
+        padding: 30px;
+      }
+      .receipt button {
+        display: none;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .main {
+        padding: 20px;
+      }
+      .navbar {
+        padding: 0 10px;
+      }
+      .navbar .brand {
+        font-size: 20px;
+      }
+      .navbar-links a {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 10px;
+      }
+      .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+      }
+      .navbar-links a {
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 0;
+      }
+      .main {
+        padding: 10px;
+      }
+      .edit-form {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">Hell's Gate Store</div>
+    <div class="navbar-links">
+      <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="mycart.html"><i class="fas fa-shopping-cart"></i> My Cart</a>
+      <a href="editprofile.html"><i class="fas fa-user"></i> Edit Profile</a>
+      <a href="products.html"><i class="fas fa-box"></i> Products</a>
+      <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="greeting">Edit Profile - <span id="userEmail"></span></div>
+    </div>
+
+    <div class="edit-form" id="editForm">
+      <h3>Edit Your Profile</h3>
+      <form onsubmit="saveProfile(event)">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+
+  <script>
+    const email = localStorage.getItem("userEmail");
+    document.getElementById("userEmail").textContent = email || "Guest";
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    function renderCart() {
+      const cartList = document.getElementById("cartList");
+      const totalPriceElem = document.getElementById("totalPrice");
+      const receiptDetails = document.getElementById("receiptDetails");
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      if (cart.length === 0) {
+        cartList.innerHTML = '<div class="empty-msg">Your cart is empty.</div>';
+        totalPriceElem.textContent = '';
+        receiptDetails.innerHTML = '';
+        return;
+      }
+
+      cartList.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <span>${item.name} - ₱${item.price}</span>
+          <button onclick="removeItem(${index})">Remove</button>
+        `;
+        cartList.appendChild(div);
+      });
+
+      totalPriceElem.textContent = `Total: ₱${total}`;
+
+      // Receipt Summary
+      receiptDetails.innerHTML = `
+        <p><strong>Buyer:</strong> ${email || "Guest"}</p>
+        <ul style="list-style-type: none; padding-left: 0;">
+          ${cart.map(item => `<li>${item.name} - ₱${item.price}</li>`).join('')}
+        </ul>
+        <p><strong>Total:</strong> ₱${total}</p>
+        <p><em>Thank you for choosing Hell's Gate Memorial Services.</em></p>
+      `;
+    }
+
+    function saveProfile(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Save the profile data in localStorage or update accordingly
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userPassword", password);
+
+      alert("Profile updated successfully!");
+    }
+
+    window.onload = function() {
+      renderCart();
+    };
+  </script>
+</body>
+</html>

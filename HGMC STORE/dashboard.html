@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hell's Gate | Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="assets/fav.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .navbar {
+      width: 100%;
+      background-color: #1e1e2f;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Add this */
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      color: #b22222;
+      margin-right: 30px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+      justify-content: flex-end; /* Add this */
+    }
+
+    .navbar a {
+      color: #ccc;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s ease;
+      font-size: 16px;
+    }
+
+    .navbar a:hover {
+      background-color: #2f2f45;
+      color: #fff;
+    }
+
+    .main {
+      padding: 20px;
+      background: linear-gradient(to right, #121212, #1e1e2f);
+      overflow-y: auto;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .topbar .greeting {
+      font-size: 18px;
+    }
+
+    .topbar .cart {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .search-bar {
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 300px;
+      font-size: 14px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    .content-box {
+      background-color: #292940;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(178, 34, 34, 0.2);
+    }
+
+    .content-box h3 {
+      color: #b22222;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .product-list {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .product {
+      background-color: #1f1f30;
+      border: 1px solid #333;
+      padding: 15px;
+      border-radius: 8px;
+      width: 180px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 15px rgba(178, 34, 34, 0.3);
+    }
+
+    .product h4 {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #b22222;
+    }
+
+    .product button {
+      padding: 8px 10px;
+      background-color: #b22222;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #8b0000;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 10px;
+      }
+      .navbar-links {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start; /* Responsive: align links left on small screens */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        padding: 15px;
+      }
+      .product {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product {
+        width: 100%;
+      }
+      .navbar h2 {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+      .navbar a {
+        font-size: 14px;
+        padding: 8px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h2>Hell's Gate Store</h2>
+    <div class="navbar-links">
+      <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="mycart.html"><i class="fas fa-shopping-cart"></i> My Cart</a>
+      <a href="editprofile.html"><i class="fas fa-user"></i> Edit Profile</a>
+      <a href="products.html"><i class="fas fa-box"></i> Products</a>
+      <a href="index.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="greeting">Welcome, <span id="userEmail"></span>!</div>
+      <!-- <div class="cart"><i class="fas fa-shopping-cart"></i> <span id="cartCount"></span></div> -->
+    </div>
+
+    <div class="content-box">
+      <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="featured-title">Featured Items</h3>
+        <!-- <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+        </div> -->
+      </div>
+      <div class="product-list" id="productList" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+        <!-- Product 1 -->
+        <div class="product">
+          <img src="assets/casket.jpg" alt="Casket" style="width:100%; border-radius:6px; margin-bottom:10px;">
+          <h4>Premium Black Casket</h4>
+          <p style="font-size: 13px; color: #ccc; margin-bottom: 12px;">Sleep forever in style. Matte black finish with velvet lining.</p>
+        </div>
+        <!-- Product 2 -->
+        <div class="product">
+          <img src="assets/urn.jpg" alt="Urn" style="width:100%; border-radius:6px; margin-bottom:10px;">
+          <h4>Obsidian Ash Urn</h4>
+          <p style="font-size: 13px; color: #ccc; margin-bottom: 12px;">Elegant container for eternal rest. Hand-carved obsidian stone.</p>
+        </div>
+        <!-- Product 3 -->
+        <div class="product">
+          <img src="assets/candle.jpg" alt="Candle" style="width:100%; border-radius:6px; margin-bottom:10px;">
+          <h4>Prayer Candle - Blood Red</h4>
+          <p style="font-size: 13px; color: #ccc; margin-bottom: 12px;">Light the way for lost souls. Scented with lavender and sorrow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Preview -->
+  <div id="previewModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+    <div style="background:#292940; border-radius:12px; max-width:350px; width:90%; margin:auto; padding:24px 18px; box-shadow:0 0 20px #b2222230; position:relative; text-align:center;">
+      <span onclick="closePreview()" style="position:absolute; top:10px; right:18px; color:#fff; font-size:22px; cursor:pointer;">&times;</span>
+      <img id="modalImg" src="" alt="" style="width:100%; border-radius:8px; margin-bottom:14px;">
+      <h4 id="modalTitle" style="color:#b22222; margin-bottom:8px;"></h4>
+      <p id="modalDesc" style="color:#ccc; font-size:14px; margin-bottom:14px;"></p>
+      <div id="modalPrice" style="color:#fff; font-weight:bold; margin-bottom:18px;"></div>
+      <button id="modalAddBtn" style="padding:8px 16px; background:#b22222; border:none; color:#fff; border-radius:5px; cursor:pointer;">Add to cart</button>
+    </div>
+  </div>
+  <script>
+    function showPreview(name, img, desc, price) {
+      document.getElementById('modalImg').src = img;
+      document.getElementById('modalTitle').textContent = name;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalPrice').textContent = "₱" + price.toLocaleString();
+      document.getElementById('previewModal').style.display = 'flex';
+      document.getElementById('modalAddBtn').onclick = function() {
+        addToCart(name, price);
+        closePreview();
+      };
+    }
+    function closePreview() {
+      document.getElementById('previewModal').style.display = 'none';
+    }
+  </script>
+
+  <script>
+    const email = localStorage.getItem("userEmail");
+    document.getElementById("userEmail").textContent = email || "Guest";
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    function addToCart(productName, price) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name: productName, price: price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(productName + " added to cart!");
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      document.getElementById("cartCount").textContent = `(${cart.length})`;
+    }
+
+    function filterProducts() {
+      const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+      const products = document.querySelectorAll(".product");
+      products.forEach(product => {
+        const productName = product.querySelector("h4").textContent.toLowerCase();
+        if (productName.includes(searchQuery)) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    }
+
+    window.onload = function () {
+      updateCartCount();
+    };
+  </script>
+</body>
+</html>

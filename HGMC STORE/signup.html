@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hell's Gate Store | Signup</title>
+  <link rel="icon" type="image/x-icon" href="assets/fav.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+      body {
+      display: flex;
+      height: 100vh;
+      background: linear-gradient(to right, #0c0c0c, #1a1a1a);
+      color: #fff;
+      overflow-y: auto;
+      flex-direction: column;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      animation: fadeIn 1.5s ease;
+      flex-direction: row;
+    }
+
+    /* LEFT SIDE */
+    .left {
+      flex: 1;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .left h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #b22222;
+      letter-spacing: 1px;
+    }
+
+    .left p {
+      font-size: 16px;
+      max-width: 400px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    /* RIGHT SIDE */
+    .right {
+      flex: 1;
+      background-color: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .form-box {
+      width: 100%;
+      max-width: 350px;
+      background-color: #1c1c1c;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(178, 34, 34, 0.3);
+    }
+
+    .form-box h2 {
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #b22222;
+      text-align: center;
+    }
+
+    .form-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background-color: #2b2b2b;
+      color: #fff;
+    }
+
+    .form-box input::placeholder {
+      color: #aaa;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #b22222;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .form-box button:hover {
+      background-color: #8b0000;
+      box-shadow: 0 0 10px #b22222;
+    }
+
+    /* SOCIAL BUTTONS */
+    .social-btns {
+      margin-top: 15px;
+    }
+
+    .social-btns button {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      background-color: #2f2f2f;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 15px;
+      transition: 0.3s ease;
+    }
+
+    .social-btns button:hover {
+      background-color: #444;
+    }
+
+    .social-btns .fa-google {
+      color: #DB4437;
+    }
+
+    .social-btns .fa-facebook {
+      color: #1877F2;
+    }
+
+    .social-btns .fa-github {
+      color: #ccc;
+    }
+
+    .alt-option {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #b22222;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      text-align: center;
+      margin-bottom: 10px;
+      height: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* RESPONSIVE STYLES */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .left h1 {
+        font-size: 30px;
+      }
+
+      .form-box h2 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .left {
+        padding: 20px 10px;
+      }
+
+      .left h1 {
+        font-size: 24px;
+      }
+
+      .left p {
+        font-size: 14px;
+      }
+
+      .form-box {
+        padding: 20px;
+        max-width: 100%;
+      }
+
+      .form-box h2 {
+        font-size: 20px;
+      }
+
+      .form-box input,
+      .form-box button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .social-btns button {
+        font-size: 14px;
+        gap: 6px;
+      }
+    }
+
+    /* ANIMATION */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>Join the Hell’s Gate</h1>
+      <p>Create your account and step into the realm of stylish darkness. Don’t worry, we only bite sometimes.</p>
+    </div>
+    <div class="right">
+      <div class="form-box">
+        <h2>Sign Up</h2>
+
+        <!-- Message Box -->
+        <div class="message" id="message"></div>
+
+        <input type="text" placeholder="Full Name" id="fullname" required />
+        <input type="email" placeholder="Email Address" id="email" required />
+        <input type="password" placeholder="Create Password" id="password" required />
+        <input type="password" placeholder="Confirm Password" id="confirmPassword" required />
+        <button type="submit" onclick="signupUser()">Create Account</button>
+
+        <div class="social-btns">
+          <button><i class="fab fa-google"></i> Sign up with Google</button>
+          <button><i class="fab fa-facebook"></i> Sign up with Facebook</button>
+          <button><i class="fab fa-github"></i> Sign up with Github</button>
+        </div>
+
+        <div class="alt-option">
+          Already have an account? <a href="login.html">Log in here</a><br>
+          <a href="index.html">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function signupUser() {
+      const name = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+      const message = document.getElementById("message");
+
+      if (!name || !email || !password || !confirmPassword) {
+        message.textContent = "Please fill in all fields.";
+        message.style.color = "lightcoral";
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        message.textContent = "Passwords do not match.";
+        message.style.color = "lightcoral";
+        return;
+      }
+
+      localStorage.setItem("isSignedUp", "true");
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userName", name);
+
+      message.textContent = "Account created! Redirecting to login...";
+      message.style.color = "lightgreen";
+
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

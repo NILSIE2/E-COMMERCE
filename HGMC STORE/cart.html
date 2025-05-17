@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart | Hell's Gate</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #121212;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      color: #b22222;
+      font-family: 'Cinzel', serif;
+    }
+
+    .nav-links a {
+      margin: 0 10px;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: #b22222;
+    }
+
+    .cart-container {
+      padding: 40px;
+    }
+
+    .cart-item {
+      background-color: #292940;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-item h3 {
+      margin: 0;
+    }
+
+    .cart-item button {
+      padding: 8px 12px;
+      background-color: #b22222;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .cart-item button:hover {
+      background-color: #8b0000;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .checkout-btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #32cd32;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      float: right;
+    }
+
+    .checkout-btn:hover {
+      background-color: #228b22;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hell's Gate</h1>
+    <div class="nav-links">
+      <!-- <a href="index.html">Home</a> -->
+      <a href="store.html">Store</a>
+      <a href="cart.html">Cart</a>
+      <a href="profile.html">Profile</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </header>
+
+  <div class="cart-container" id="cart-items">
+    <!-- Cart items will load here -->
+  </div>
+
+  <div class="total" id="total">Total: ₱0</div>
+  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartContainer = document.getElementById("cart-items");
+      const totalEl = document.getElementById("total");
+      cartContainer.innerHTML = "";
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const itemEl = document.createElement("div");
+        itemEl.classList.add("cart-item");
+        itemEl.innerHTML = `
+          <h3>${item.name}</h3>
+          <div>
+            <span>₱${item.price}</span>
+            <button onclick="removeItem(${index})">Remove</button>
+          </div>
+        `;
+        cartContainer.appendChild(itemEl);
+      });
+
+      totalEl.textContent = `Total: ₱${total}`;
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function checkout() {
+      if (confirm("Proceed to checkout?")) {
+        alert("Thank you for your purchase!");
+        localStorage.removeItem("cart");
+        renderCart();
+      }
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    window.onload = renderCart;
+  </script>
+
+</body>
+</html>
